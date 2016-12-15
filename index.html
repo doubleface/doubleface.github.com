@@ -1,100 +1,32 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cozy Databrowser</title>
 
-		<title>Cozy konnectors</title>
+        <meta name="description" content="overview &amp; stats" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Cozy Databrowser">
+        <meta name="author" content="Cozycloud and Loic TRUCHOT and Christophe Thiriot">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="build/app.css">
+    </head>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/white.css">
+    <body>
+        <div role="application">
+            <aside class="drawer"></aside>
+            <main>
+                <div role="toolbar">
+                    <button formaction="drawer/toggle">☰</button>
+                </div>
+                <div role="contentinfo"></div>
+            </main>
+        </div>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <script src="build/vendor.js"></script>
+        <script src="build/cozysdk-client.js"></script>
+        <script src="build/app.js"></script>
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1><img id="klogo" src="konnectors.svg">Cozy konnectors</h1>
-					<p>Aspire vos données pour VOUS</p>
-				</section>
-				<section>
-					<h2>Qui je suis ?</h2>
-					<p>Christophe Thiriot</p>
-					<p>@doubleface sur <a href="https://twitter.com/doubleface">twitter</a>
-					et <a href="https://github.com/doubleface">github</a></p>
-					<p>Développeur web</p>
-					<p>Mainteneur de <a href="https://github.com/cozy-labs/konnectors">konnectors</a> (avec @nicofrand et @zehiro)
-					et du <a href="https://github.com/doubleface/cozy-databrowser">databrowser</a></p>
-				</section>
-				<section>
-					<h2>Konnectors : qu'est ce que c'est ?</h2>
-					<ul>
-					<li>Récupère vos données sur différents services web
-					<li>Les sauve dans votre cozy (bien rangés)
-					<li>Un projet très communautaire
-					</ul>
-				</section>
-				<section>
-					<h2>Exemples</h2>
-					<ul>
-					<li>Vos factures de téléphone ou de box internet (SFR, RED, Bouygues, Orange, Sosh, Free)
-					<li>Vos remboursements Ameli
-					<li>Vos événements SNCF
-					<li>Vos podcasts
-					<li>Vos tweets
-					<li>Et même vos commits Github (pour les devs dans la salle)
-					</ul>
-				</section>
-				<section>
-					<h2> Idéal pour commencer à contribuer </h2>
-					<p>Un connecteur est simplement un petit script javascript</p>
-				    <p>Il y a de nombreux exemples et un super guide pour commencer à s'y mettre</p>
-				    <p><a href="https://github.com/cozy-labs/konnectors/wiki">https://github.com/cozy-labs/konnectors/wiki</a></p>
-				    <p>Besoin de nombreux contributeurs qui ont des comptes pour les différents services</p>
-				</section>
-				<section> <h1>Demo</h1> </section>
-				<section>
-					<h2>TODO</h2>
-					<ul>
-					<li>impots.gouv.fr
-					<li>Factures Amazon
-					<li>Relevés de banques
-					<li>Vidéos Youtube
-					<li>Flux RSS
-					<li>Des idées ?
-					</ul>
-				</section>
-
-			</div>
-		</div>
-
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
-
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+    </body>
 </html>
