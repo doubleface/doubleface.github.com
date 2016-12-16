@@ -46,14 +46,14 @@
 
 	"use strict";
 	
-	window.Backbone = __webpack_require__(10);
+	window.Backbone = __webpack_require__(9);
 	window.$ = window.jQuery = Backbone.$;
 	window._ = __webpack_require__(4);
 	__webpack_require__(2);
 	__webpack_require__(3);
+	__webpack_require__(10);
 	__webpack_require__(11);
 	__webpack_require__(12);
-	__webpack_require__(13);
 
 /***/ },
 /* 1 */
@@ -28388,8 +28388,7 @@
 /* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */,
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {//     Backbone.js 1.3.3
@@ -30316,7 +30315,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -30520,7 +30519,7 @@
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Responsive 2.1.0
@@ -31758,7 +31757,7 @@
 
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Scroller 1.4.2
