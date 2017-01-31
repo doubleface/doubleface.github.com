@@ -29,12 +29,13 @@
                     <p>Learn the real value of your data</p>
                 </section>
                 <section>
-                    <h2>Who am I?</h2>
+                    <h2>Who are we?</h2>
                     <p>Christophe Thiriot</p>
                     <p>@doubleface on <a href="https://twitter.com/doubleface">twitter</a>
                     and <a href="https://github.com/doubleface">github</a></p>
-                    <p>Web developper</p>
                     <p>Maintainer of some cozy applications</p>
+                    <p>Romain Foucault</p>
+                    <p>Cozy cloud employee</p>
                 </section>
                 <section>
                     <h2>What is Cozy?</h2>
@@ -46,6 +47,48 @@
                     <li>Still in beta at the moment
                     </ul>
                 </section>
+                <section>
+                    <h2>What is Cozy?</h2>
+                    <ul>
+                    <li>An open source  personnal cloud (self-hosted or not, as you want)
+                    <li>With some preinstalled application to help you degoogling (mail, calendar, photos, file sharing)
+                    <li>Application can be installed on it
+                    <li>You can develop applications for it.
+                    <li>Still in beta at the moment
+                    </ul>
+                </section>
+                <section>
+                    <h2>Step 1 : get my data back</h2>
+                    <p>An application in cozy allows that : my data</p>
+                    <p>With login and passwords, it can get a lot of your data back : mails,
+                    photos, bank operations, bills, ...</p>
+                    <p>Every data has its own connector</p>
+                    <p>A connector is a simple javascript file :</p>
+                </section>
+                <section>
+                    <p>It can be a simple javascript file you run with nodejs</p>
+                    <p>Using "request-promise" "cheerio" modules</p>
+                </section>
+                <section>
+                    <pre><code class="hljs">
+request({ method: 'GET', jar: true, url: 'https://login.uber.com/login'})
+.then((res, body) => {
+    const $ = cheerio.load(body)
+    const token = $('input[name=_csrf_token]').val()
+
+    log.info('Logging in')
+
+    return request({method: 'POST',jar: true,url:'https://login.uber.com/login',
+          form: {
+            email: "YOUR UBER LOGIN", password: "YOUR UBER PASSWORD",
+            _csrf_token: token
+          }})
+ .then((result, body) => {
+    log.info('Login succeeded')
+ })
+                    </code></pre>
+                </section>
+
             </div>
         </div>
 
