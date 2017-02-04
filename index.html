@@ -30,7 +30,7 @@
                 </section>
                 <section>
                     <h2>Who are we?</h2>
-                    <h4>Christophe Thiriot (Maintainer)</h4>
+                    <h4>Christophe Thiriot (Maintainer of some applications)</h4>
                     <p><strong>@doubleface</strong> on <a href="https://twitter.com/doubleface">twitter</a>
                     and <a href="https://github.com/doubleface">github</a></p>
                     <hr />
@@ -53,28 +53,47 @@
                 <section>
                     <h2>Step 1 : get my data back</h2>
                     <p>There is an app for that : my accounts</p>
-                    <p>With login and passwords, it can get a lot of your data back : mails,
-                    photos, bank operations, bills, ...</p>
+                    <p>With login and passwords, gets a lot of your data back</p>
                     <p>Every data has its own connector</p>
                 </section>
                 <section>
-                    <p>the <strong>My Accounts</strong> apps handle storage / sync
-                    <p>Focus on the scrapping part</p>
-                    <p>Using "request-promise" "cheerio" modules</p>
+                    <p>The connector to your data is missing ? You can do something!
+                    <p>the <strong>My Accounts</strong> app handles storage / sync
+                </section>
+                <section>
+                    <h2>package.json</h2>
+                    <pre><code class="hljs">
+module.exports = baseKonnector.createNew({
+  name: 'Trainline',
+  vendorLink: 'www.trainline.fr',
+  fields: {
+    login: 'email',
+    password: 'password',
+    folderPath: 'folder',
+  },
+  models: [Bill]
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <p>Your "target" offers you an API ? your really lucky!</p>
+                </section>
+                <section>
+                    <h2>If no API, let's do scraping</h2>
+                    <p>Using "request-promise" "cheerio" npm modules</p>
                 </section>
                 <section>
                     <pre><code class="hljs">
-var url = "https://login.uber.com/login"
-request({ method: 'GET', jar: true, url: url})
+request({ method: 'GET', jar: true, url: "https://login.uber.com/login"})
 .then((res, body) => {
     const $ = cheerio.load(body)
     const token = $('input[name=_csrf_token]').val()
 
     log.info('Logging in')
 
-    return request({method: 'POST',jar: true, url: url,
+    return request({method: 'POST', jar: true, url: url,
           form: {
-            email: "YOUR UBER LOGIN", password: "YOUR UBER PASSWORD",
+            email: requiredFields.login, password: requiredFields.password,
             _csrf_token: token
           }})
  .then((result, body) => {
@@ -82,99 +101,6 @@ request({ method: 'GET', jar: true, url: url})
  })
                     </code></pre>
                 </section>
-                <section>
-                    <h2>Step 2 : Use my data</h2>
-                    <p>You can create your own cozy application</p>
-                </section>
-                <section>
-                  <h2>index.html</h2>
-                  <pre><code class="hljs">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-    &lt;head&gt;
-        &lt;title&gt;TODO&lt;/title&gt;
-        &lt;script src=&quot;cozy-client.js&quot;&gt;&lt;/script&gt;
-        &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-      &lt;button id=&quot;create_special&quot;&gt;
-        Create Task for last bill
-      &lt;/button&gt;
-      &lt;ul id=&quot;todo&quot; class=&quot;list-group&quot;&gt;&lt;/ul&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                </section>
-                <section>
-                  <h2>package.json</h2>
-                  <pre><code class="hljs">{
-  "name": "todo",
-  "cozy-type": "static",
-  "cozy-displayName": "todo",
-  "version": "0.0.1",
-  "description": "Next tasks to do in your cozy",
-  "license": "MIT",
-  "cozy-permissions": {
-    "TodoDemo": {
-      "description": "Todo demo items"
-    },
-    "File": {
-      "description": "Find bills in your file"
-    }
-  }
-}
-</code></pre>
-                </section>
-                <section>
-                  <h2>app.js (1/3)</h2>
-                  <pre><code class="hljs">function displayTodos() {
-  cozy.defineIndex("tododemo", ["completed"])
-  .then((index) => cozy.query(index, {
-    selector: {"completed": false},
-  }))
-  .then(list => {
-    todo.innerHTML = list.map(item => {
-      return `<li class="list-group-item">${item.description}</li>`;
-    }).join("");
-  });
-}
-</code></pre>
-                </section>
-                <section>
-                  <h2>app.js (2/3)</h2>
-                  <pre><code class="hljs">function getLastBill() {
-  cozy.defineIndex('file', ["class", "lastModified"])
-  .then((index) => cozy.query(index, {
-    selector: {"class": "document"},
-    sort: "lastModified",
-    descending true
-    limit: 1,
-  }))
-  .then(list => list[0])
-  .then(file => {
-    if (file === undefined) {
-        window.alert("no document found");
-    }
-  }
-  </code></pre>
-                  </section>
-                  <section>
-                    <h2>app.js (2/3)</h2>
-                    <pre><code class="hljs">getLastBill()
-.then( (file) => {
-  let url = `/apps/files/files/${file._id}/attach/${file.name}`;
-  cozy.create("tododemo", {
-    description: `Pay <a href="${url}" target="_blank">bill </a>`,
-  })
-})
-.then(displayTodos);
-
-</code></pre>
-                </section>
-                <section>
-                    <p>A cozy application is just a simple static javascript application using the cozy client
-                    sdk and with a special package.json file in a github repository</p>
-                    <p>Example :</p>
-                </section>
-
                 <section>
 
                     <h2>Step 2 : Use my data</h2>
@@ -266,11 +192,6 @@ request({ method: 'GET', jar: true, url: url})
 
 </code></pre>
                 </section>
-                <section>
-                    <p>A cozy application is just a simple static html page application<p>
-                    <p>It can manipulate its own doctypes or use from other applicationw</p>
-                </section>
-
 
                 <section>
                     <h2>Conclusion : <del>Profit</del> Share</h2>
