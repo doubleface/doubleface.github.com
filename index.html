@@ -40,36 +40,40 @@
                 </section>
                 <section>
                     <h2>What is Cozy?</h2>
+                    <em>sorry if you were here this morning</em>
+                    <p>&nbsp;</p>
                     <ul>
-                    <li>An open source  personnal cloud (self-hosted or not, as you want)
-                    <li>With some preinstalled application to help you degoogling (mail, calendar, photos, file sharing)
-                    <li>Application can be installed on it
-                    <li>You can develop applications for it.
-                    <li>Still in beta at the moment
+                    <li>open source personnal cloud
+                    <li>some preinstalled applications (degoogling)
+                    <li>You can install more applications
+                    <li>You can make more applications
+                    <li>Beta
                     </ul>
                 </section>
                 <section>
                     <h2>Step 1 : get my data back</h2>
-                    <p>An application in cozy allows that : my data</p>
-                    <p>With login and passwords, it can get a lot of your data back : mails,
-                    photos, bank operations, bills, ...</p>
-                    <p>Every data has its own connector</p>
+                    <p>There is an app for that : my accounts</p>
+                    <p>Give it your login and passwords, it gets your data back</p>
+                    <p>Every data source has its own connector</p>
                 </section>
                 <section>
+                    <h2>Make my own connector</h2>
                     <p>the <strong>My Accounts</strong> apps handle storage / sync
-                    <p>Focus on the scrapping part</p>
-                    <p>Using "request-promise" "cheerio" modules</p>
+                    <p>Focus on the retriving the data from the website</p>
+                    <p>if(api) use it <em>(request-promise)</em></p>
+                    <p>else scrap it <em>(cheerio)</em></p>
                 </section>
                 <section>
                     <pre><code class="hljs">
-request({ method: 'GET', jar: true, url: 'https://login.uber.com/login'})
+var url = "https://login.uber.com/login"
+request({ method: 'GET', jar: true, url: url})
 .then((res, body) => {
     const $ = cheerio.load(body)
     const token = $('input[name=_csrf_token]').val()
 
     log.info('Logging in')
 
-    return request({method: 'POST',jar: true,url:'https://login.uber.com/login',
+    return request({method: 'POST',jar: true, url: url,
           form: {
             email: "YOUR UBER LOGIN", password: "YOUR UBER PASSWORD",
             _csrf_token: token
