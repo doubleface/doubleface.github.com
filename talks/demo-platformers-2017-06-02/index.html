@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Demo "back" 24/03/2017</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/white.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Konnectors: les choses qui ne se voient pas dans les cartes trello</h1>
+                </section>
+                <section>
+                    <h2>L'équipe back s'est mise à faire des connecteurs, principalement Bruno</h2>
+                </section>
+                <section>
+                    <h2>Support à la MAIF très chronophage (Christophe)</h2>
+                    <ul>
+                        <li>Portage du connecteur MAIF sensé être fais par la MAIF
+                        <li>Difficultés de communication : mails qui passent pas etc.
+                        <li>Vacances impromptues, alternance entre deux prestataires pour faire le
+                            connecteur
+                        <li>PALC qui empêche de tester le connecteur chez eux
+                    </ul>
+                </section>
+                <section>
+                    <h2>Instabilité de l'API orange qui nous a pas mal ralentis pour le
+                        développement des connecteurs OAuth en général</h2>
+                </section>
+                <section>
+                    <h2>Gros travail d'automatisation de Cédric</h2>
+                    <ul>
+                        <li>Build automatique de tous les connecteurs qui a demandé une mise à jour
+                            repo par repo
+                        <li>Documentation dans le template de connecteur
+                    </ul>
+                </section>
+                <section>
+                    <h2>Grosse aide de Romain</h2>
+                    <ul>
+                        <li>Fonctionnement de l'api OAuth de la MAIF très différent de l'api Orange
+                            -> gros changement pour la stack
+                        <li>Le lancement du container rocket prend plus de temps que prévu
+                        <ul>
+                            <li>Tentative d'optimisation
+                            <li>Adaptation des limites de temps accordées aux connecteurs
+                        </ul>
+                        <li>Meilleure gestion des retours d'erreur des connecteurs
+                    </ul>
+                </section>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
